@@ -1,0 +1,32 @@
+// .babelrc
+
+{
+    "presets": [
+        ["@babel/preset-react", {"runtime": "automatic"}],
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": "last 2 versions"
+                },
+                "modules": false,
+                "loose": false
+            }
+        ]
+    ],
+    "plugins": [
+        "transform-class-properties"
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
+        }
+    }
+}
+/*
+“babel-preset-env” tells webpack to compile all syntax to ES5 (which browsers understand)
+“babel-preset-react” adds support for jsx syntax
+“transform-es2015-modules-commonjs” and “transform-class-properties” are there for backward compatibility
+*/
