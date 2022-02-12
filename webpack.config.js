@@ -6,31 +6,35 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const modeConfiguration = (env) => require(`./build-utils/webpack.${env}`)(env);
 
 module.exports = ({ mode } = { mode: "production" }) => {
-  console.log(`mode is: ${mode}`);
+  console.log(`mode is: ${path.resolve('./public')}`);
 
   return merge(
     {
       mode,
-      entry: "./src/index.js",
+      entry: path.resolve(__dirname, 'src', 'index.tsx'),
       output: {
         publicPath: "/",
         path: path.resolve(__dirname, "build"),
-        filename: "[name]-[hash].js",
+        filename: "[name].js",
       },
       resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: ['.js', '.ts', '.tsx']
       },
       module: {
         rules: [
           {
             test:  /\.(png|svg|jpg|jpeg|gif|ico)$/,
             exclude: /node_modules/,
-            use: ["url-loader", "file-loader", 'file-loader?name=[name].[ext]'],
+            use: ["url-loader", "file-loader"],
           },
           {
-            test: /\.(tsx|ts|js|jsx)$/,
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             loader: "babel-loader",
+          },
+          {
+            test: /\.(ts|tsx)$/,
+            use: ['ts-loader']
           },
           {
             test: /\.css$/i,
@@ -52,9 +56,10 @@ module.exports = ({ mode } = { mode: "production" }) => {
       },
       plugins: [
         new HtmlWebpackPlugin({
+          title: 'optimize',
+          filename: './index.html',
           template: "./public/index.html",
-          favicon: './public/favicon.ico',
-          manifest: './public/manifest.json',
+          favicon: './public/favicon.ico'
         }),
         new webpack.HotModuleReplacementPlugin(),
       ],
