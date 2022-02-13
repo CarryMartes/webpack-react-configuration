@@ -1,13 +1,14 @@
 import React from "react";
-import './test.scss'
+import './test.scoped.scss'
 interface Props {
   title: string;
+  casuals: number;
 }
 
-const Tests = ({ title }: Props) => {
+const Tests = ({ title }: Partial<Props>) => {
   return (
     <div>
-      <span>{ title }</span>
+      <span className="titleClass">{ title }</span>
     </div>
   );
 };

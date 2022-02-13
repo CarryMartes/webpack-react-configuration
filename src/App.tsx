@@ -1,11 +1,12 @@
-import React from 'react';
-import './App.css';
-import Tests from './components/example/test'
+import React from "react";
+import "./App.css";
+import Tests from "components/example/test";
 
-function App(): JSX.Element {
+function App() {
   return (
     <div className="App">
-      <Tests title={'Hello'} />
+      <div></div>
+      <Tests title={"Hello"} />
     </div>
   );
 }

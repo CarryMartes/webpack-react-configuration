@@ -18,7 +18,10 @@ module.exports = ({ mode } = { mode: "production" }) => {
         filename: "[name].js",
       },
       resolve: {
-        extensions: ['.js', '.ts', '.tsx']
+        extensions: ['.js', '.ts', '.tsx'],
+        alias: {
+          components: path.resolve(__dirname, 'src/components'),
+        },
       },
       module: {
         rules: [
